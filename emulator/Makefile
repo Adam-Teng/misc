@@ -18,3 +18,6 @@ clean:
 
 test: logisim
 	./logisim | ./display.py
+
+test1: logisim
+	./logisim | python3 seven-seg.py 
