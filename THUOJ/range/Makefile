@@ -4,5 +4,5 @@ all: $(NAME)
 include ../Makefile
 
 run: all
-	./$(NAME)
+	./$(NAME) < test > test.out
 
