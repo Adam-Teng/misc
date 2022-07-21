@@ -43,6 +43,17 @@ def binary_search_b(lst, a, x, y):
         return binary_search_b(lst, a, (x+y)//2+1, y)
 
 
+def binary_search_iteration(lst, a, x, y):
+    mid = 0
+    while x < y:
+        mid = (x+y) >> 1
+        if a < lst[mid]:
+            y = mid
+        else:
+            x = mid+1
+    return x-1
+
+
 print(brute_range([0, 1, 3, 7, 9, 11], 0, 8))
 print(binary_search_b([0, 1, 3, 7, 9, 11], 8, 0, 5) -
       binary_search_a([0, 1, 3, 7, 9, 11], 0, 0, 5))

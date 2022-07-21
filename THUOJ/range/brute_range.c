@@ -40,6 +40,34 @@ int range(int lst[], int a, int b, int len) {
          binary_search_a(lst, a, 0, len - 1);
 }
 
+int binary_search_iteration(int lst[], int e, int lo, int hi, int *flag) {
+  *flag = 0;
+  int mid;
+  while (lo < hi) {
+    mid = (lo + hi) >> 1;
+    if (e < lst[mid]) {
+      hi = mid;
+    } else {
+      if (e == lst[mid])
+        *flag = 1;
+      lo = mid + 1;
+    }
+  }
+  return --lo;
+}
+
+int range_iteration(int lst[], int a, int b, int len) {
+  if (a > lst[len - 1] || b < lst[0]) {
+    return 0;
+  } else {
+    int flag = 0;
+    int temp1 = binary_search_iteration(lst, a, 0, len, &flag);
+    temp1 = flag == 1 ? temp1 - 1 : temp1;
+    int temp2 = binary_search_iteration(lst, b, 0, len, &flag);
+    return temp2 - temp1;
+  }
+}
+
 int main() {
   int m, n;
   scanf("%d %d", &m, &n);
@@ -52,7 +80,7 @@ int main() {
   int a, b, x;
   for (i = 0; i < n; i++) {
     scanf("%d %d", &a, &b);
-    x = range(lst, a, b, m);
+    x = range_iteration(lst, a, b, m);
     printf("%d\n", x);
   }
   return 0;
